@@ -1,0 +1,8 @@
+{
+  "name": "DPBuzz Digital Marketing Agency",
+  "description": "A modern, high-performance digital marketing agency website featuring smooth animations, responsive design, and integrated AI consultation.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

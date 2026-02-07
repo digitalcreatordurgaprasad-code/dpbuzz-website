@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPBuzz | Ignite Your Digital Growth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #000000;
+            --accent-soft: #333333;
+            --accent-fg: #ffffff;
+            --hero-bg: #000000;
+            --bg-surface: #ffffff;
+            --dot-color: #ffffff;
+            --border-width: 4px;
+            --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* Event Themes */
+        [data-theme="diwali"] { --accent: #FFD700; --accent-soft: #800000; --accent-fg: #000000; --hero-bg: #3d0000; --bg-surface: #fffcf0; --dot-color: #FFD700; }
+        [data-theme="holi"] { --accent: #ff00ff; --accent-soft: #00ffff; --accent-fg: #ffffff; --hero-bg: #1a0b2e; --bg-surface: #faf5ff; --dot-color: #ff00ff; }
+        [data-theme="festive"] { --accent: #e11d48; --accent-soft: #166534; --accent-fg: #ffffff; --hero-bg: #052e16; --bg-surface: #f0fdf4; --dot-color: #e11d48; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: var(--bg-surface);
+            color: #000000;
+            overflow-x: hidden;
+            transition: background-color 0.4s var(--ease-premium);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            font-weight: 900;
+        }
+
+        section {
+            content-visibility: auto;
+            contain-intrinsic-size: auto 500px;
+        }
+
+        .reveal, .reveal-up, .reveal-down, .reveal-left, .reveal-right, .reveal-scale { 
+            opacity: 0; 
+            will-change: transform, opacity;
+            transform: translate3d(0, 0, 0); 
+            transition: opacity 0.6s var(--ease-premium), transform 0.6s var(--ease-premium);
+        }
+        
+        .reveal-up { transform: translate3d(0, 30px, 0); }
+        .reveal-down { transform: translate3d(0, -30px, 0); }
+        .reveal-left { transform: translate3d(-30px, 0, 0); }
+        .reveal-right { transform: translate3d(30px, 0, 0); }
+        .reveal-scale { transform: scale(0.97) translate3d(0, 0, 0); }
+
+        .active {
+            opacity: 1 !important;
+            transform: translate3d(0, 0, 0) scale(1) !important;
+        }
+
+        .stagger-1 { transition-delay: 0.05s; }
+        .stagger-2 { transition-delay: 0.1s; }
+        .stagger-3 { transition-delay: 0.15s; }
+
+        @keyframes typing { 0% { width: 0; } 40%, 60% { width: 100%; } 100% { width: 0; } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: currentColor } }
+
+        .typing-container {
+            display: inline-block;
+            vertical-align: bottom;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 4px solid;
+            animation: typing 4s steps(7, end) infinite, blink-caret .75s step-end infinite;
+        }
+
+        @keyframes maskUp { from { transform: translate3d(0, 110%, 0); } to { transform: translate3d(0, 0, 0); } }
+        .mask-container { overflow: hidden; display: inline-block; vertical-align: bottom; }
+        .mask-text { display: block; animation: maskUp 0.8s var(--ease-premium) forwards; will-change: transform; }
+
+        /* Scoped Hover to Desktop Only */
+        @media (min-width: 768px) {
+            .hover-lift { transition: transform 0.2s var(--ease-premium); }
+            .hover-lift:hover { transform: translate3d(0, -4px, 0); }
+        }
+
+        @keyframes scroll-right { 0% { transform: translate3d(-50%, 0, 0); } 100% { transform: translate3d(0, 0, 0); } }
+        .animate-scroll-right { animation: scroll-right 60s linear infinite; will-change: transform; }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--accent-fg);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s var(--ease-premium);
+            border: 2px solid var(--accent);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-surface); }
+        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.13.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.39.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        const initObserver = () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.05, rootMargin: '50px' });
+
+            document.querySelectorAll('.reveal, .reveal-up, .reveal-down, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+                observer.observe(el);
+            });
+        };
+
+        window.addEventListener('load', initObserver);
+        window.refreshAnimations = initObserver;
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
